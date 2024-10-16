@@ -1,1 +1,1 @@
-FROM nginx:alpine-slim  
+FROM almalinux:9
