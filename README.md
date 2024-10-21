@@ -112,14 +112,49 @@ CMD instruction runs at the time of containse creation, its keeps containse runn
 
 FROM almalinux:9
 RUN dnf install nginx -y
-CMD ["nginx", "-g", "daemon-off"]
+CMD ["nginx", "-g", "daemon off;"]
 
- docker build -t cmd:v1 .
+docker build -t cmd:v1 .  --> it will create a image cmd:v1
+
+docker run cmd:v1 --> creatgin a container from image cmd:v1 --> it will run in foreground
+
+docker run -d cmd:v1 --> -d -> detached mode, runs in background
+
+docker run -d --name nginx-server cmd:v1 --> --name -> name to a container 
+
+docker run -d -p <host-port>:<container-port> --name <any_name> <docker_image>
+
+docker run -d -p 80:80 --name nginx-2 cmd:v1
 
 
+To push your docker image to your docker hub registry need to re-tag your images
 
+docker tag cmd:v1 venkat2607/nginx:1.0
 
-docker run -d -p <host-port>:<container-port> --name <your_cont_name> <image_name>:<version> -- it will create container from your docker , -d detatched mode (run in background)
+docker login -u docker_username
+docker_password
 
-docker run -d -p 80:80 --name from:1.0 
+docker push venkat2607/nginx:1.0 --> push your image to docker-hub
 
+now we can use your docker image 
+
+docker pull venkat2607/nginx:1.0  --> your docker image will download
+
+RUN --> RUN will execute at the time of image creation
+
+CMD --> CMD will execute at the time of container creation
+
+LABEL
+=====
+label is used to find the proper image
+FROM almalinux:9
+LABEL author="venkat" \
+    course="devops" \
+    company="tcs"
+LABEL duration="90 Days"
+
+docker build -t label:va
+
+check the cocker images with tcs company
+
+docker images -f 'label=company=tcs' --> it will display all tcs company images
