@@ -82,10 +82,17 @@ docker run -d -p <host-port>:<container-port> --name <any_name> <docker_image>
 
 docker run -d -p 81:80 --name venkat-test d769f03e916d
 
+docker build --> for image creation
+docker run --> for container creation
+
 Dockerfile
 ==========
 FROM 
 -----
+
+FROM almalinux:9
+
+
 docker build -t <image_name>:<version> .  --> t for tag -- it will create docker image from Dockerfile
 docker build -t from:v1 .
 
@@ -102,6 +109,12 @@ docker images --> to see images
 CMD
 ---
 CMD instruction runs at the time of containse creation, its keeps containse running.
+
+FROM almalinux:9
+RUN dnf install nginx -y
+CMD ["nginx", "-g", "daemon-off"]
+
+ docker build -t cmd:v1 .
 
 
 
