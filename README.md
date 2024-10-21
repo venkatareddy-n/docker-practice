@@ -92,6 +92,20 @@ docker build -t from:v1 .
 RUN
 ---
 
+FROM almalinux:9
+RUN dnf install nginx -y
+
+docker build -t run:v1 .
+
+docker images --> to see images
+
+CMD
+---
+CMD instruction runs at the time of containse creation, its keeps containse running.
+
+
+
+
 docker run -d -p <host-port>:<container-port> --name <your_cont_name> <image_name>:<version> -- it will create container from your docker , -d detatched mode (run in background)
 
 docker run -d -p 80:80 --name from:1.0 
