@@ -21,10 +21,6 @@ from one image we can create multiple images
 
 docker images --> displays the images available in server
 
-docker ps --> checks the running containers
-
-docker ps -a --> checks the all containers
-
 docker pull <image_name> --> pulls the image from the docker repository/dockerhub
 
 docker pull nginx
@@ -35,9 +31,15 @@ docker create <image_name>:version
 
 docker create nginx:alpine-slim --> create container from image 
 
+docker create --name venkat d769f03e916d --> create a container from image with name
+
 docker start container_ID --> start the container
 
 docker stop container_ID --> stop the container
+
+docker ps --> checks the running containers
+
+docker ps -a --> checks the all containers
 
 docker rm container_ID --> remove stopped container
 
@@ -82,8 +84,15 @@ docker run -d -p 81:80 --name venkat-test d769f03e916d
 
 Dockerfile
 ==========
-
+FROM 
+-----
 docker build -t <image_name>:<version> .  --> t for tag -- it will create docker image from Dockerfile
+docker build -t from:v1 .
 
-docker run -d -p <host-port>:<container-port> --name <your_cont_name> <image_name>:<version> -- it will create container from your docker image
+RUN
+---
+
+docker run -d -p <host-port>:<container-port> --name <your_cont_name> <image_name>:<version> -- it will create container from your docker , -d detatched mode (run in background)
+
+docker run -d -p 80:80 --name from:1.0 
 
