@@ -180,6 +180,26 @@ ENV course="devops" \
 
 ENV Sets the environment variables, these can be used inside the container
 ---------------
+
 COPY
 ====
 COPY is used to copy files from local to image
+
+FROM almalinux:9
+RUN dnf install nginx -y
+RUN rm -rf /usr/share/nginx/html/index.html
+COPY index.html /usr/share/nginx/html/index.html
+CMD ["nginx", "-g", "daemon off;"]
+
+docker build -t copy:v1 .  --> create image
+
+docker run -d --name copy-server2 -p 80:80 copy:v1  --> create contaiser form image
+
+docker exec -it 27d9d0b bash --> to enter inside the container
+
+ADD
+===
+ADD also does the same as COPY, but it has 2 extra capabilities
+1. It will download file form the internet
+2. It can extract the files into the image
+
