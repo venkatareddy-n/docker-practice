@@ -263,4 +263,18 @@ USER
 ====
 for security you should not run containers using root user, it must be on normal user. Atleast last instruction should USER <some-username>
 
+FROM almalinux:9
+RUN useradd expense
+USER expense
+CMD ["sleep", "100"]
+
+docker build -t user:v1 .
+
+docker run -d user:v1
+---------------------
+
+WORKDIR
+=======
+is used to set the current working directory inside docker image
+
 
