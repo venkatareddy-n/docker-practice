@@ -218,6 +218,21 @@ docker run -d entry:v1
 
 docker logs -f <container_id> 
 
-docker run entry:v1 ping yahoo.com --> CMD can replace at the time for container creation, now ping yahoo.com will take
+docker run entry:v1 ping yahoo.com --> CMD can replace at the time for container creation, CMD Can ne overridden, now ping yahoo.com will take
 ----------------------------
+FROM almalinux:9
+ENTRYPOINT ["ping", "google.com"]
 
+docker build -t entry:v1 .
+
+docker run -d entry:v1
+
+docker logs -f <container_id> 
+
+docker run -d entry:v1 ping yahoo.com
+
+docker ps -a --no-trunc  --> to see the executed commands
+
+ENTRYPOINT can't overriden like CMD, if you try to do it will go and append to the entrypoint command
+command "ping google.com ping yahoo.com"
+-------------------
