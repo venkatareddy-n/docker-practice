@@ -205,3 +205,5 @@ ADD also does the same as COPY, but it has 2 extra capabilities
 
 docker ps -a -q --> to list all containers
 
+docker rm -f $(docker ps -a -q) --> remove all containers
+
