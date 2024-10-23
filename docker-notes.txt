@@ -322,6 +322,26 @@ ENV var-name=$var-name
 
 ONBUILD
 =======
-
 is used to trigger few instructions at build when a user is using our image.
 
+FROM almalinux:9
+RUN dnf install nginx -y
+RUN rm -rf /usr/share/nginx/html/index.html
+# This onbuild instruction runs only, when any user uses your image, it won't trigger for author
+ONBUILD COPY index.html /usr/share/nginx/html/index.html
+CMD ["nginx", "-g", "daemon off;"]
+
+docker build -t  venkat2607/onbuild:1.0 .  --> it will create image
+
+docker push venkat2607/onbuild:1.0 --> push image to docer hub
+
+now you can use venkat2607/onbuild:1.0 image, but for this image you need to pass index.html is mandiatory
+
+create one test forlder and place Dockerfile and index.html
+Dockerfile
+----------
+FROM venkat2607/onbuild:1.0
+
+index.html
+<h1>This image is created by onbuild base image</h1>
+-------------------------------------------------------
