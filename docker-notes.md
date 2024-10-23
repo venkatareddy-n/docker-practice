@@ -236,3 +236,15 @@ docker ps -a --no-trunc  --> to see the executed commands
 ENTRYPOINT can't overriden like CMD, if you try to do it will go and append to the entrypoint command
 command "ping google.com ping yahoo.com"
 -------------------
+
+FROM almalinux:9
+CMD ["google.com"]
+ENTRYPOINT ["ping"]
+
+docker build -t entry:v1 .
+
+docker run entry:v1 --> it will work
+
+docker run entry:v1 yahoo.com --> it will work with yahoo
+
+CMD will pass default arguments to ENTRYPOINT
