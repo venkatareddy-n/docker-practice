@@ -203,3 +203,5 @@ ADD also does the same as COPY, but it has 2 extra capabilities
 1. It will download file form the internet
 2. It can extract the files into the image
 
+docker ps -a -q --> to list all containers
+
