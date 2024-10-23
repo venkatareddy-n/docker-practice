@@ -209,4 +209,15 @@ docker rm -f $(docker ps -a -q) --> remove all containers
 
 ENTRYPOINT
 ==========
+FROM almalinux:9
+CMD ["ping", "google.com"]
+
+docker build -t entry:v1 .
+
+docker run -d entry:v1
+
+docker logs -f <container_id> 
+
+docker run entry:v1 ping yahoo.com --> CMD can replace at the time for container creation, now ping yahoo.com will take
+----------------------------
 
