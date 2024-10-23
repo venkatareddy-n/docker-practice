@@ -163,5 +163,7 @@ docker exec -it 09683c9dc855 /bin/sh
 or
 docker exec -it 09683c9dc855 bash
 -----------------------------
+EXPOSE
+=======
 
-
+The EXPOSE instruction doesn't actually publish the port.
