@@ -207,3 +207,6 @@ docker ps -a -q --> to list all containers
 
 docker rm -f $(docker ps -a -q) --> remove all containers
 
+ENTRYPOINT
+==========
+
