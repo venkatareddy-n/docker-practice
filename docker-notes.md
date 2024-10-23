@@ -174,3 +174,12 @@ CMD ["nginx", "-g", "daemon off;"]
 
 ENV
 ===
+FROM almalinux:9
+ENV course="devops" \
+    trainse="siva"
+
+ENV Sets the environment variables, these can be used inside the container
+---------------
+COPY
+====
+COPY is used to copy files from local to image
