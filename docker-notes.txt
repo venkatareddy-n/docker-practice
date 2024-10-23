@@ -209,6 +209,11 @@ docker rm -f $(docker ps -a -q) --> remove all containers
 
 ENTRYPOINT
 ==========
+
+1. CMD can be overridden at runtime
+2. You can't override ENTRYPOINT like CMD. If you try to do it will go and append to the entrypoint command
+3. for better results and best practices. CMD can provide args to ENTRYPOINT, So you can mention default args through CMD and you can override them at run time..
+-------------
 FROM almalinux:9
 CMD ["ping", "google.com"]
 
@@ -235,16 +240,27 @@ docker ps -a --no-trunc  --> to see the executed commands
 
 ENTRYPOINT can't overriden like CMD, if you try to do it will go and append to the entrypoint command
 command "ping google.com ping yahoo.com"
--------------------
+---------------------------------------
 
 FROM almalinux:9
 CMD ["google.com"]
 ENTRYPOINT ["ping"]
+or 
+FROM almalinux:9
+ENTRYPOINT ["ping"]
+CMD ["google.com"]
 
 docker build -t entry:v1 .
 
 docker run entry:v1 --> it will work
 
-docker run entry:v1 yahoo.com --> it will work with yahoo
+docker run entry:v1 yahoo.com --> it will replace CMD arguments, work with yahoo
 
 CMD will pass default arguments to ENTRYPOINT
+----------------------------------------------
+
+USER
+====
+for security you should not run containers using root user, it must be on normal user. Atleast last instruction should USER <some-username>
+
+
