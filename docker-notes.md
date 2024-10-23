@@ -64,14 +64,6 @@ docker run -d -p 80:80 nginx:alpine-slim --> port 80 mapping --> ipaddress:80 to
 
 docker run -d -p 81:80 nginx:alpine-slim --> port 81 mapping --> ipaddress:81 to access nginx
 
-Execute 
-========
-docker exec -it <container_id> bash or /bin/sh or sh
-
-docker exec -it 09683c9dc855 /bin/sh
-
-docker exec -it 09683c9dc855 bash
-
 docker inspect <container-id>  --> to see container information
 
 docker logs <container-id>  --> to see container logs
@@ -91,7 +83,6 @@ FROM
 -----
 
 FROM almalinux:9
-
 
 docker build -t <image_name>:<version> .  --> t for tag -- it will create docker image from Dockerfile
 docker build -t from:v1 .
@@ -126,8 +117,9 @@ docker run -d -p <host-port>:<container-port> --name <any_name> <docker_image>
 
 docker run -d -p 80:80 --name nginx-2 cmd:v1
 
-
-To push your docker image to your docker hub registry need to re-tag your images
+PUSH
+=======
+To push your docker image to your docker hub registry need to re-tag your images with your dockerid
 
 docker tag cmd:v1 venkat2607/nginx:1.0
 
@@ -149,12 +141,27 @@ LABEL
 label is used to find the proper image
 FROM almalinux:9
 LABEL author="venkat" \
-    course="devops" \
-    company="tcs"
+      course="devops" \
+      company="tcs"
 LABEL duration="90 Days"
 
-docker build -t label:va
+docker build -t label:v1 .
 
 check the cocker images with tcs company
 
 docker images -f 'label=company=tcs' --> it will display all tcs company images
+
+docker inspect
+--------------
+docker inspect image_name   --> to see the image information
+
+Execute - to enter inside the container
+========
+docker exec -it <container_id> bash or /bin/sh or sh
+
+docker exec -it 09683c9dc855 /bin/sh
+or
+docker exec -it 09683c9dc855 bash
+-----------------------------
+
+
