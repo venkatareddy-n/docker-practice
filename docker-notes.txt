@@ -276,5 +276,25 @@ docker run -d user:v1
 WORKDIR
 =======
 is used to set the current working directory inside docker image
+cd command will not work in docker
 
+FROM almalinux:9
+RUN mkdir /tmp/docker
+WORKDIR /tmp/docker
+RUN pwd
+RUN echo "Hello" > hello.txt
+CMD ["sleep", "100"]
+
+docker build -t workdir:v1 .
+
+docker run -d workdir:v1
+
+docker exec -it a768b2948 bash
+
+pwd --> output is /tmp/docker
+----------------------------
+
+ARG
+===
+ARG is used to set the variables at build time only, not inside the container
 
