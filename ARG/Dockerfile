@@ -1,7 +1,7 @@
 ARG version
 FROM almalinux:${version:-9}
-ARG course="DevOps with AWS" \
-    duration="120hrs"
+ARG company="TCS" \
+    project="Ericsson"
 ENV duration=$duration
-RUN echo "Course: $course, duration: $duration, version: $version"
+RUN echo "Company: $company, Project: $project, Version: $version"
 CMD ["sleep","100"]
